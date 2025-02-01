@@ -4,21 +4,22 @@ import { useRef } from "react";
 import {Checkvalidatedata} from  "../Hooks/useValidatedata"
 import { createUserWithEmailAndPassword ,updateProfile,signInWithEmailAndPassword} from "firebase/auth";
 import {auth } from "../Utils/firebase";
-import {   } from "firebase/auth";
 
-export const Model2=({setactive2})=>{
+
+export const ModelLogin=({setActive2})=>{
     const name=useRef();
     const email=useRef();
     const password=useRef()
-    const [login,setlogin]=useState(true)
-    const [error,seterror]=useState("")
+    const [login,setLogin]=useState(true)
+    const [error,setError]=useState("")
+   
     const loginToggler=()=>{
-        setlogin(!login)
+        setLogin(!login)
     }
-    const Validateform=(e)=>{
+    const validateForm=(e)=>{
         e.preventDefault();
  const msg= Checkvalidatedata(email.current.value,password.current.value,name.current? name.current.value:"",login)
- seterror(msg)
+ setError(msg)
                          //SIGNUP//
          if(!login){                
 createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
@@ -41,7 +42,7 @@ dispatch(addUser({
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    seterror(errorCode +" - "+errorMessage)
+    setError(errorCode +" - "+errorMessage)
   });}
 
   else{             //signin//
@@ -54,14 +55,14 @@ signInWithEmailAndPassword(auth, email.current.value, password.current.value)
 
     const errorCode = error.code;
     const errorMessage = error.message;
-    seterror(errorCode +" - "+errorMessage)
+    setError(errorCode +" - "+errorMessage)
   });
   
 }
 
     }
     return (<div style={{cursor:"pointer"}}>
-        <button style={{border:"none",outline:"none", marginLeft:"40px",marginTop:"20px",background:"none",}} onClick={()=> setactive2(false)}> <i  className="bi bi-x-lg icon"></i></button><br/>
+        <button style={{border:"none",outline:"none", marginLeft:"40px",marginTop:"20px",background:"none",}} onClick={()=> setActive2(false)}> <i  className="bi bi-x-lg icon"></i></button><br/>
         <div style={{display:"flex",alignItems:"center"}}>
             <div style={{ flex: "0.75" }}>
         <h3 style={{marginLeft:"40px",marginTop:"10px", whiteSpace: "nowrap"}}>{login ? "Login" : "Sign Up"}</h3>
@@ -70,16 +71,20 @@ signInWithEmailAndPassword(auth, email.current.value, password.current.value)
        <div style={{marginLeft:"40px", }}>
        <img src={slogo} style={{width:"100px",height:"100px"}} alt="logo"/></div> 
        </div>
-        <form onSubmit={Validateform} className="field" style={{marginTop:"20px"}}>
+        <form onSubmit={validateForm} className="field" style={{marginTop:"20px"}}>
    {!login && <input type="text" ref={name}  placeholder="Name"/>}<br/>
-        <input type="text" ref={email} placeholder="Email"/><br/>
+      
+        <input type="text" ref={email} placeholder="Email"/><br/>   
+    
         <input type="password" ref={password} placeholder="Password"/><br/>
+        
         <button type="submit">{login? "Login": "Sign up"}</button>
         </form>
         <span style={{ fontSize: "12px", marginLeft: "40px",marginTop:"0px" }}>
   {login? "By clicking on Login, I accept the Terms & Conditions & Privacy Policy" : "By creating an account, I accept the Terms & Conditions & Privacy Policy"}
  </span>
  <p style={{color:"red"}}>{error}</p>
+ 
      
     </div>)
 }

@@ -1,9 +1,9 @@
 import {RestaurantMenu} from"./RestaurantMenu"
-import {Nbar} from "../Components/Nbar"
+import {Navbar} from "../Components/Navbar"
 export const Restaurant=()=>{
 
     return(<div >
-        <Nbar/>
+        <Navbar/>
      <RestaurantMenu/>
     </div>)
 }

@@ -1,10 +1,10 @@
-//import {Navbar} from "./navbar"
+
 import {Header} from "../Components/Header"
-import {Nbar} from "../Components/Nbar"
+import {Navbar} from "../Components/Navbar"
 
 export const MainComponent=()=>{
     return(<div>
-<Nbar/>
+<Navbar/>
 <Header/>
     </div>) 
 }

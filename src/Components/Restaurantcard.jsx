@@ -9,7 +9,7 @@ export const Restaurantcard=({restaurant})=>{
 
 <div   >
  <div className="card" style={{width: "12.5rem",height:"18rem"}}>
-  <img src={CDNI+cloudinaryImageId} className="card-img-top" alt="" style={{width: "12.5rem",height:"10rem", position:"relative"}} /> 
+  <img src={CDNI+cloudinaryImageId} className="card-img-top" alt="" style={{width: "12.4rem",height:"10rem", position:"relative"}} /> 
   <span style={{position:"absolute",fontWeight:"bold",fontSize:"medium", paddingLeft:"10px",color:"white", top:"8.5rem"}}>{offers}</span> 
   <div className="card-body">
     <h6 className="card-title" style={{fontWeight:"bold", margin:"0px" ,overflow:"hidden" ,whiteSpace:"nowrap",textOverflow:"ellipsis"}}>{name}</h6>
